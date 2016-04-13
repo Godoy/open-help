@@ -1,0 +1,13 @@
+<h1>Open Help</h1>
+
+<% if user_signed_in? %>
+  <%= link_to('Logout', destroy_user_session_path, :method => :get) %>
+
+  <ul>
+    <% @repositories.each do |repo| %>
+      <li><%= repo.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <%= link_to "Sign in with Github", user_omniauth_authorize_path(:github) %>
+<% end %>
