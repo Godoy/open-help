@@ -3,9 +3,11 @@
 <% if user_signed_in? %>
   <%= link_to('Logout', destroy_user_session_path, :method => :get) %>
 
+
+  <h2>Choose a project to ask help</h2>
   <ul>
     <% @repositories.each do |repo| %>
-      <li><%= repo.name %></li>
+      <li><a href="<%= new_repo_path repo.id %>"><%= repo.full_name %></a></li>
     <% end %>
   </ul>
 <% else %>

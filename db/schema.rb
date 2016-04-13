@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413200104) do
+ActiveRecord::Schema.define(version: 20160413203324) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -30,6 +30,22 @@ ActiveRecord::Schema.define(version: 20160413200104) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+
+  create_table "repos", force: :cascade do |t|
+    t.string   "name"
+    t.string   "full_name"
+    t.string   "github_id"
+    t.string   "github_html_url"
+    t.string   "github_description"
+    t.string   "github_homepage"
+    t.string   "github_ssh_url"
+    t.string   "github_language"
+    t.string   "github_open_issues"
+    t.string   "github_forks"
+    t.string   "github_stargazers_count"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

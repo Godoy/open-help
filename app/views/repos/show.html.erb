@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @repo.name %>
+</p>
+
+<p>
+  <strong>Full name:</strong>
+  <%= @repo.full_name %>
+</p>
+
+<p>
+  <strong>Github:</strong>
+  <%= @repo.github_id %>
+</p>
+
+<p>
+  <strong>Github html url:</strong>
+  <%= @repo.github_html_url %>
+</p>
+
+<p>
+  <strong>Github description:</strong>
+  <%= @repo.github_description %>
+</p>
+
+<p>
+  <strong>Github homepage:</strong>
+  <%= @repo.github_homepage %>
+</p>
+
+<p>
+  <strong>Github ssh url:</strong>
+  <%= @repo.github_ssh_url %>
+</p>
+
+<p>
+  <strong>Github language:</strong>
+  <%= @repo.github_language %>
+</p>
+
+<p>
+  <strong>Github open issues:</strong>
+  <%= @repo.github_open_issues %>
+</p>
+
+<p>
+  <strong>Github forks:</strong>
+  <%= @repo.github_forks %>
+</p>
+
+<p>
+  <strong>Github stargazers count:</strong>
+  <%= @repo.github_stargazers_count %>
+</p>
+
+<%= link_to 'Edit', edit_repo_path(@repo) %> |
+<%= link_to 'Back', repos_path %>
