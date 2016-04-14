@@ -1,10 +1,12 @@
 class ReposController < ApplicationController
   before_action :set_repo, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /repos
   # GET /repos.json
   def index
     @repos = Repo.all
+    @repositories = Octokit.repositories current_user.nickname
   end
 
   # GET /repos/1

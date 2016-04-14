@@ -1,15 +1,5 @@
-<h1>Open Help</h1>
-
-<% if user_signed_in? %>
-  <%= link_to('Logout', destroy_user_session_path, :method => :get) %>
-
-
-  <h2>Choose a project to ask help</h2>
-  <ul>
-    <% @repositories.each do |repo| %>
-      <li><a href="<%= new_repo_path repo.id %>"><%= repo.full_name %></a></li>
-    <% end %>
-  </ul>
-<% else %>
-  <%= link_to "Sign in with Github", user_omniauth_authorize_path(:github) %>
-<% end %>
+<div class="row">
+  <div class="col-sm-12 text-center">
+      <%= link_to "Sign in with Github", user_omniauth_authorize_path(:github), class: "btn btn-md btn-default" %>
+  </div>
+</div>

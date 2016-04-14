@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def home
     if user_signed_in?
-      @repositories = Octokit.repositories current_user.nickname
+      redirect_to repos_path
     end
   end
 end

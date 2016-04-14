@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-sm-8">
+    <h2 class="text-center">Help others projects</h2>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <h3>Filters</h3>
+        <ul>
+          <li>By technology</li>
+          <li>By main language</li>
+          <li>By develop level ?? </li>
+        </ul>
+      </div>
+      <div class="col-sm-8">
+        <ul>
+          <li>Project</li>
+        </ul>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <h2>Ask for help</h2>
+    <ul>
+      <% @repositories.each do |repo| %>
+        <li><a href="<%= new_repo_path repo.id %>"><%= repo.full_name %></a></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
