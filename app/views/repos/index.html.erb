@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-8">
-    <h2 class="text-center">Help others projects</h2>
+    <h2 class="">Help projects</h2>
 
     <div class="row">
       <div class="col-sm-4">
@@ -8,12 +8,25 @@
         <ul>
           <li>By technology</li>
           <li>By main language</li>
-          <li>By develop level ?? </li>
+          <li>By project stars range </li>
+          <li>By forks number range</li>
         </ul>
       </div>
       <div class="col-sm-8">
-        <ul>
-          <li>Project</li>
+        <h3>Projects</h3>
+        <ul class="repos">
+          <% @repos.each do |repo| %>
+            <li>
+              <a href="<%= repo_path repo %>">
+                <%= repo.name %> (<%= repo.full_name %>)
+              </a>
+              <%= raw "<span class='label label-primary'>#{repo.github_language}</span>" if repo.github_language.present? %>
+              <%= raw "<span class='label label-warning'><span class='glyphicon glyphicon-star' aria-hidden='true'></span> #{repo.github_stargazers_count}</span>" if repo.github_stargazers_count.present? %>
+              <%= raw "<span class='label label-info'><span class='glyphicon glyphicon-transfer' aria-hidden='true'></span> #{repo.github_forks}</span>" if repo.github_forks.present? %>
+              <%= raw "<span class='label label-danger'><span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> #{repo.github_open_issues}</span>" if repo.github_open_issues.present? %>
+              <%= raw "<p>#{emojify(repo.github_description)}</p>" if repo.github_description.present? %>
+            </li>
+          <% end %>
         </ul>
         </ul>
       </div>
@@ -21,9 +34,10 @@
   </div>
 
   <div class="col-sm-4">
-    <h2>Ask for help</h2>
+    <h2>Needs help?</h2>
+    <h3><%= current_user.nickname %> repos</h3>
     <ul>
-      <% @repositories.each do |repo| %>
+      <% @user_repos.each do |repo| %>
         <li><a href="<%= new_repo_path repo.id %>"><%= repo.full_name %></a></li>
       <% end %>
     </ul>

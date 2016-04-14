@@ -6,7 +6,7 @@ class ReposController < ApplicationController
   # GET /repos.json
   def index
     @repos = Repo.all
-    @repositories = Octokit.repositories current_user.nickname
+    @user_repos = Octokit.repositories current_user.nickname
   end
 
   # GET /repos/1
@@ -16,9 +16,8 @@ class ReposController < ApplicationController
 
   # GET /repos/new
   def new
-    github_repo = Octokit.repository(params[:github_id].to_i)
-    @repo = Repo.new(github_id: params[:github_id], name: github_repo.name)
-
+    @github_repo = Octokit.repository(params[:github_id].to_i)
+    @repo = Repo.new(github_id: params[:github_id])
   end
 
   # GET /repos/1/edit
@@ -28,7 +27,22 @@ class ReposController < ApplicationController
   # POST /repos
   # POST /repos.json
   def create
-    @repo = Repo.new(repo_params)
+    @github_repo = Octokit.repository(repo_params[:github_id].to_i)
+
+    @repo = Repo.new(
+      name: @github_repo.name,
+      full_name: @github_repo.full_name,
+      github_id: @github_repo.id,
+      github_html_url: @github_repo.html_url,
+      github_description: @github_repo.description,
+      github_homepage: @github_repo.homepage,
+      github_ssh_url: @github_repo.ssh_url,
+      github_language: @github_repo.language,
+      github_open_issues: @github_repo.open_issues,
+      github_forks: @github_repo.forks,
+      github_stargazers_count: @github_repo.stargazers_count,
+      user: current_user
+    )
 
     respond_to do |format|
       if @repo.save
@@ -73,6 +87,6 @@ class ReposController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repo_params
-      params.require(:repo).permit(:name, :full_name, :github_id, :github_html_url, :github_description, :github_homepage, :github_ssh_url, :github_language, :github_open_issues, :github_forks, :github_stargazers_count)
+      params.require(:repo).permit(:github_id)
     end
 end

@@ -5,6 +5,35 @@
 
 @import "scaffolds";
 
+$title-font: "Exo";
+
 h1 {
-  font-family: 'Exo', sans-serif;
+  font-family: $title-font, sans-serif;
+}
+
+#logo {
+  font-family: $title-font, sans-serif;
+  font-size: 34px;
+  padding: 20px 0;
+  display: block;
+
+  &:hover {
+    text-decoration: none;
+    background: inherit;
+    color: inherit;
+  }
+}
+
+ul.repos {
+  margin: 0;
+  padding: 0;
+  li {
+    list-style: none;
+    margin-bottom: 20px;
+    a {
+      font-size: 22px;
+      display: block;
+      padding-bottom: 5px;
+    }
+  }
 }

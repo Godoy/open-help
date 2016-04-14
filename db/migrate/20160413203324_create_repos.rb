@@ -13,6 +13,8 @@ class CreateRepos < ActiveRecord::Migration
       t.string :github_forks
       t.string :github_stargazers_count
 
+      t.references :user, index: true, foreign_key: true
+
       t.timestamps null: false
     end
   end

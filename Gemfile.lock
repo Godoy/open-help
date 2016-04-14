@@ -70,6 +70,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     font-awesome-rails (4.5.0.1)
       railties (>= 3.2, < 5.1)
+    gemoji (2.1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -227,6 +228,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise
+  gemoji
   jbuilder (~> 2.0)
   jquery-rails
   octokit (~> 4.0)

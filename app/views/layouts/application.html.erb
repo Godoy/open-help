@@ -2,19 +2,20 @@
 <html>
 <head>
   <title>Openhelp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-3">
+        <a href="<%= root_path %>" id="logo" class="">Open Help</a>
+      </div>
+      <div class="col-sm-9 text-right">
         <% if user_signed_in? %>
-          <%= link_to('Logout', destroy_user_session_path, :method => :get, class: "pull-right") %>
+          <%= link_to('Logout', destroy_user_session_path, :method => :get, class: "") %>
         <% end %>
-        <h1 class="pull-left">Open Help</h1>
-
 
       </div>
     </div>
