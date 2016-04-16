@@ -14,3 +14,13 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require_tree .
+
+
+$(function() {
+  $(".filter-repos").change(function() {
+    var language = $("#github_language").val();
+    var idiom = $("#idiom").val();
+
+    window.location.href = "/repos?idiom="+idiom+"&language="+escape(language);
+  });
+});

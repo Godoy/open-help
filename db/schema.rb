@@ -44,10 +44,12 @@ ActiveRecord::Schema.define(version: 20160413203324) do
     t.string   "github_forks"
     t.string   "github_stargazers_count"
     t.integer  "user_id"
+    t.string   "idiom"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
 
+  add_index "repos", ["idiom"], name: "index_repos_on_idiom"
   add_index "repos", ["user_id"], name: "index_repos_on_user_id"
 
   create_table "users", force: :cascade do |t|
@@ -64,6 +66,9 @@ ActiveRecord::Schema.define(version: 20160413203324) do
     t.string   "provider"
     t.string   "uid"
     t.string   "nickname"
+    t.string   "name"
+    t.string   "image"
+    t.string   "location"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end

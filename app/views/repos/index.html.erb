@@ -1,13 +1,24 @@
 <div class="row">
   <div class="col-sm-8">
-    <h2 class="">Help projects</h2>
+    <h2 class="">Projects that need your help</h2>
 
     <div class="row">
       <div class="col-sm-4">
         <h3>Filters</h3>
+
         <ul>
-          <li>By technology</li>
-          <li>By main language</li>
+          <li>
+            <label>Language: </label><%= select_tag(:github_language,
+              options_for_select(@languages, params["language"]),
+              include_blank: "Any",
+              class: "filter-repos form-control") %>
+          </li>
+          <li>
+            <label>Idiom: </label><%= select_tag(:idiom,
+              options_for_select(@idioms.collect{ |b| [b.upcase, b] }, params["idiom"]),
+              include_blank: "Any",
+              class: "filter-repos form-control") %>
+          </li>
           <li>By project stars range </li>
           <li>By forks number range</li>
         </ul>
@@ -34,8 +45,9 @@
   </div>
 
   <div class="col-sm-4">
-    <h2>Needs help?</h2>
+    <h2>Needs some help?</h2>
     <h3><%= current_user.nickname %> repos</h3>
+
     <ul>
       <% @user_repos.each do |repo| %>
         <li><a href="<%= new_repo_path repo.id %>"><%= repo.full_name %></a></li>

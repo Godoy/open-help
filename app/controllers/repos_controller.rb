@@ -5,7 +5,10 @@ class ReposController < ApplicationController
   # GET /repos
   # GET /repos.json
   def index
-    @repos = Repo.all
+    @repos = Repo.by_language(params["language"]).by_idiom(params["idiom"])
+
+    @languages = Repo.uniq.pluck(:github_language)
+    @idioms = Repo.uniq.pluck(:idiom)
     @user_repos = Octokit.repositories current_user.nickname
   end
 
@@ -17,7 +20,12 @@ class ReposController < ApplicationController
   # GET /repos/new
   def new
     @github_repo = Octokit.repository(params[:github_id].to_i)
+    @languages = Octokit.languages(params[:github_id].to_i)
+
+    # logger.debug @github_repo.to_yaml
     @repo = Repo.new(github_id: params[:github_id])
+
+    @common_idioms = LanguageList::COMMON_LANGUAGES
   end
 
   # GET /repos/1/edit
@@ -28,8 +36,9 @@ class ReposController < ApplicationController
   # POST /repos.json
   def create
     @github_repo = Octokit.repository(repo_params[:github_id].to_i)
+    @repo = Repo.new(repo_params)
 
-    @repo = Repo.new(
+    @repo.attributes = {
       name: @github_repo.name,
       full_name: @github_repo.full_name,
       github_id: @github_repo.id,
@@ -37,12 +46,11 @@ class ReposController < ApplicationController
       github_description: @github_repo.description,
       github_homepage: @github_repo.homepage,
       github_ssh_url: @github_repo.ssh_url,
-      github_language: @github_repo.language,
       github_open_issues: @github_repo.open_issues,
       github_forks: @github_repo.forks,
       github_stargazers_count: @github_repo.stargazers_count,
       user: current_user
-    )
+    }
 
     respond_to do |format|
       if @repo.save
@@ -87,6 +95,6 @@ class ReposController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repo_params
-      params.require(:repo).permit(:github_id)
+      params.require(:repo).permit(:github_id, :github_language, :idiom)
     end
 end
