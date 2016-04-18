@@ -8,14 +8,14 @@
 
         <ul>
           <li>
-            <label>Language: </label><%= select_tag(:github_language,
-              options_for_select(@languages, params["language"]),
+            <label>Programming Language: </label><%= select_tag(:programming_language,
+              options_for_select(@programming_languages, params["programming_language"]),
               include_blank: "Any",
               class: "filter-repos form-control") %>
           </li>
           <li>
-            <label>Idiom: </label><%= select_tag(:idiom,
-              options_for_select(@idioms.collect{ |b| [b.upcase, b] }, params["idiom"]),
+            <label>Language: </label><%= select_tag(:language,
+              options_for_select(@languages.collect{ |b| [b.upcase, b] }, params["language"]),
               include_blank: "Any",
               class: "filter-repos form-control") %>
           </li>
@@ -31,7 +31,7 @@
               <a href="<%= repo_path repo %>">
                 <%= repo.name %> (<%= repo.full_name %>)
               </a>
-              <%= raw "<span class='label label-primary'>#{repo.github_language}</span>" if repo.github_language.present? %>
+              <%= raw "<span class='label label-primary'>#{repo.github_programming_language}</span>" if repo.github_programming_language.present? %>
               <%= raw "<span class='label label-warning'><span class='glyphicon glyphicon-star' aria-hidden='true'></span> #{repo.github_stargazers_count}</span>" if repo.github_stargazers_count.present? %>
               <%= raw "<span class='label label-info'><span class='glyphicon glyphicon-transfer' aria-hidden='true'></span> #{repo.github_forks}</span>" if repo.github_forks.present? %>
               <%= raw "<span class='label label-danger'><span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> #{repo.github_open_issues}</span>" if repo.github_open_issues.present? %>

@@ -18,9 +18,9 @@
 
 $(function() {
   $(".filter-repos").change(function() {
-    var language = $("#github_language").val();
-    var idiom = $("#idiom").val();
+    var programming_language = $("#programming_language").val();
+    var language = $("#language").val();
 
-    window.location.href = "/repos?idiom="+idiom+"&language="+escape(language);
+    window.location.href = "/repos?language="+language+"&programming_language="+escape(programming_language);
   });
 });

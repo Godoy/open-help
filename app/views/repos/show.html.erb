@@ -1,49 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @repo.name %>
-</p>
+<h3><%= @repo.name %> (<%= @repo.full_name %>)</h3>
+<p><%= @repo.github_homepage if @repo.github_homepage.present? %></p>
+<p><%= @repo.github_ssh_url if @repo.github_ssh_url.present? %></p>
 
-<p>
-  <strong>Full name:</strong>
-  <%= @repo.full_name %>
-</p>
+<p><%= @repo.github_html_url if @repo.github_html_url.present? %></p>
 
-<p>
-  <strong>Idiom:</strong>
-  <%= @repo.idiom %>
-</p>
+<p><%= raw emojify(@repo.github_description) if @repo.github_description.present? %></p>
 
-<p>
-  <strong>Github:</strong>
-  <%= @repo.github_id %>
-</p>
+<p><%= @repo.language if @repo.language.present? %></p>
+<p><%= @repo.github_programming_language if @repo.github_programming_language.present? %></p>
 
-<p>
-  <strong>Github html url:</strong>
-  <%= @repo.github_html_url %>
-</p>
-
-<p>
-  <strong>Github description:</strong>
-  <%= @repo.github_description %>
-</p>
-
-<p>
-  <strong>Github homepage:</strong>
-  <%= @repo.github_homepage %>
-</p>
-
-<p>
-  <strong>Github ssh url:</strong>
-  <%= @repo.github_ssh_url %>
-</p>
-
-<p>
-  <strong>Github language:</strong>
-  <%= @repo.github_language %>
-</p>
 
 <p>
   <strong>Github open issues:</strong>

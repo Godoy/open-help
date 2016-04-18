@@ -5,10 +5,10 @@ class ReposController < ApplicationController
   # GET /repos
   # GET /repos.json
   def index
-    @repos = Repo.by_language(params["language"]).by_idiom(params["idiom"])
+    @repos = Repo.by_programming_language(params["programming_language"]).by_language(params["language"])
 
-    @languages = Repo.uniq.pluck(:github_language)
-    @idioms = Repo.uniq.pluck(:idiom)
+    @programming_languages = Repo.uniq.pluck(:github_programming_language)
+    @languages = Repo.where.not(language: [nil, '']).uniq.pluck(:language)
     @user_repos = Octokit.repositories current_user.nickname
   end
 
@@ -20,12 +20,12 @@ class ReposController < ApplicationController
   # GET /repos/new
   def new
     @github_repo = Octokit.repository(params[:github_id].to_i)
-    @languages = Octokit.languages(params[:github_id].to_i)
+    @programming_languages = Octokit.languages(params[:github_id].to_i)
 
     # logger.debug @github_repo.to_yaml
     @repo = Repo.new(github_id: params[:github_id])
 
-    @common_idioms = LanguageList::COMMON_LANGUAGES
+    @common_languages = LanguageList::COMMON_LANGUAGES
   end
 
   # GET /repos/1/edit
@@ -95,6 +95,6 @@ class ReposController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repo_params
-      params.require(:repo).permit(:github_id, :github_language, :idiom)
+      params.require(:repo).permit(:github_id, :github_programming_language, :language)
     end
 end

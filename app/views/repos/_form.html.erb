@@ -19,17 +19,18 @@
 
   <p><%= @github_repo.html_url if @github_repo.html_url.present? %></p>
 
-  <p><%= raw @github_repo.description if @github_repo.description.present? %></p>
+  <p><%= raw emojify(@github_repo.description) if @github_repo.description.present? %></p>
 
-  <p>Main language:
-    <%= f.select(:github_language,
-        options_for_select(@languages.collect{ |b| [b[0], b[0]] }),
+  <p>Main programming language:
+    <%= f.select(:github_programming_language,
+        options_for_select(@programming_languages.collect{ |b| [b[0], b[0]] }),
          class: "form-control") %>
   </p>
 
-  <p>Main idiom (issues, commits):
-    <%= f.select(:idiom,
-        options_for_select(@common_idioms.collect{ |b| [b.name, b.iso_639_1] }, "en"),
+  <p>Main language (issues, commits):
+    <%= f.select(:language,
+        options_for_select(@common_languages.collect{ |b| [b.name, b.iso_639_1] }),
+        include_blank: "Any Language",
         class: "form-control") %>
   </p>
 
