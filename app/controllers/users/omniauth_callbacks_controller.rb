@@ -1,7 +1,5 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def github
-    # logger.debug request.env["omniauth.auth"].to_yaml
-
     @user = User.from_omniauth(request.env["omniauth.auth"])
 
     if @user.persisted?
