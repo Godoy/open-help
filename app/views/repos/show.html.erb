@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h3><%= @repo.name %> (<%= @repo.full_name %>)</h3>
+<%= repo_counters @repo %>
+
 <p><%= @repo.github_homepage if @repo.github_homepage.present? %></p>
 <p><%= @repo.github_ssh_url if @repo.github_ssh_url.present? %></p>
 
@@ -10,22 +12,6 @@
 
 <p><%= @repo.language if @repo.language.present? %></p>
 <p><%= @repo.github_programming_language if @repo.github_programming_language.present? %></p>
-
-
-<p>
-  <strong>Github open issues:</strong>
-  <%= @repo.github_open_issues %>
-</p>
-
-<p>
-  <strong>Github forks:</strong>
-  <%= @repo.github_forks %>
-</p>
-
-<p>
-  <strong>Github stargazers count:</strong>
-  <%= @repo.github_stargazers_count %>
-</p>
 
 <%= link_to 'Edit', edit_repo_path(@repo) %> |
 <%= link_to 'Back', repos_path %>
