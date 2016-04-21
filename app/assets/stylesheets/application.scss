@@ -29,11 +29,14 @@ ul.repos {
   padding: 0;
   li {
     list-style: none;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     a {
-      font-size: 22px;
-      display: block;
-      padding-bottom: 5px;
+      h4 {
+        font-size: 22px;
+        &:hover {
+          background:none;
+        }
+      }
     }
   }
 }

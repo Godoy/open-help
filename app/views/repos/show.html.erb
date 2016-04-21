@@ -6,12 +6,15 @@
 <p><%= @repo.github_homepage if @repo.github_homepage.present? %></p>
 <p><%= @repo.github_ssh_url if @repo.github_ssh_url.present? %></p>
 
-<p><%= @repo.github_html_url if @repo.github_html_url.present? %></p>
+<p><a href="<%= @repo.github_html_url %>" target="_blank"><%= @repo.github_html_url %></a></p>
 
 <p><%= raw emojify(@repo.github_description) if @repo.github_description.present? %></p>
 
 <p><%= @repo.language if @repo.language.present? %></p>
 <p><%= @repo.github_programming_language if @repo.github_programming_language.present? %></p>
+
+
+<p><%= user_resume @repo.user %></p>
 
 <%= link_to 'Edit', edit_repo_path(@repo) %> |
 <%= link_to 'Back', repos_path %>
