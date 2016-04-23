@@ -3,40 +3,22 @@
 
 @import url(https://fonts.googleapis.com/css?family=Exo:400,700,200);
 
-@import "scaffolds";
+@import "scaffolds", "repos", "navbar";
 
 $title-font: "Exo";
 
 h1 {
   font-family: $title-font, sans-serif;
+  font-size: 48px;
 }
 
 #logo {
   font-family: $title-font, sans-serif;
   font-size: 34px;
-  padding: 20px 0;
-  display: block;
 
   &:hover {
     text-decoration: none;
     background: inherit;
     color: inherit;
-  }
-}
-
-ul.repos {
-  margin: 0;
-  padding: 0;
-  li {
-    list-style: none;
-    margin-bottom: 40px;
-    a {
-      h4 {
-        font-size: 22px;
-        &:hover {
-          background:none;
-        }
-      }
-    }
   }
 }
