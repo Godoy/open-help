@@ -95,6 +95,6 @@ class ReposController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repo_params
-      params.require(:repo).permit(:github_id, :github_programming_language, :language)
+      params.require(:repo).permit(:github_id, :github_programming_language, :language, :necessity)
     end
 end

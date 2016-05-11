@@ -32,6 +32,7 @@
               <%= raw "<span class='label label-primary'>#{repo.github_programming_language}</span>" if repo.github_programming_language.present? %>
               <%= repo_counters repo %>
               <%= raw "<p>#{emojify(repo.github_description)}</p>" if repo.github_description.present? %>
+              <%= raw "<p>#{emojify(repo.necessity)}</p>" if repo.necessity.present? %>
               <p><%= user_resume repo.user %></p>
             </li>
           <% end %>
