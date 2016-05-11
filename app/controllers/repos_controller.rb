@@ -10,6 +10,8 @@ class ReposController < ApplicationController
     @programming_languages = Repo.uniq.pluck(:github_programming_language)
     @languages = Repo.where.not(language: [nil, '']).uniq.pluck(:language)
     @user_repos = Octokit.repositories current_user.nickname
+    @orgs = Octokit.orgs current_user.nickname
+
   end
 
   # GET /repos/1

@@ -51,5 +51,17 @@
         <li><a href="<%= new_repo_path repo.id %>"><%= repo.full_name %></a></li>
       <% end %>
     </ul>
+
+    <% @orgs.each do |org| %>
+    <h3><%= org.login %> repos</h3>
+    <ul>
+      <%
+      org_repos = Octokit.organization_repositories(org.login)
+      org_repos.each do |repo|
+      %>
+        <li><a href="<%= new_repo_path repo.id %>"><%= repo.full_name %></a></li>
+      <% end %>
+    </ul>
+    <% end %>
   </div>
 </div>
