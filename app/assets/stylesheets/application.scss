@@ -3,7 +3,9 @@
 
 @import url(https://fonts.googleapis.com/css?family=Exo:400,700,200);
 
-@import "scaffolds", "repos", "navbar";
+@import "base/scaffolds";
+
+@import "modules/filters", "modules/navbar";
 
 $title-font: "Exo";
 

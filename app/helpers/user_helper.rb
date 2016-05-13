@@ -1,6 +1,8 @@
 module UserHelper
   def user_resume(user)
-    content = "<a href='https://github.com/#{user.nickname}' target='_blank'>#{user.name}</a> "
+    content = "<a href='https://github.com/#{user.nickname}' target='_blank'>" +
+    "<span class='glyphicon glyphicon-sunglasses' aria-hidden='true'></span> " +
+    "#{user.name}</a> "
 
     content += "<span class='label label-info' title='Followers'>" +
     "<span class='glyphicon glyphicon-user' aria-hidden='true'></span> " +

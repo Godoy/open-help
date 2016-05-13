@@ -3,7 +3,7 @@
     <h2 class="">Projects that need your help</h2>
 
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-4 filters">
         <h3>Filters</h3>
 
         <ul>
@@ -23,21 +23,11 @@
       </div>
       <div class="col-sm-8">
         <h3>Projects</h3>
-        <ul class="repos">
-          <% @repos.each do |repo| %>
-            <li>
-              <a href="<%= repo_path repo %>">
-                <h4><%= repo.name %> (<%= repo.full_name %>)</h4>
-              </a>
-              <%= raw "<span class='label label-primary'>#{repo.github_programming_language}</span>" if repo.github_programming_language.present? %>
-              <%= repo_counters repo %>
-              <%= raw "<p>#{emojify(repo.github_description)}</p>" if repo.github_description.present? %>
-              <%= raw "<p>#{emojify(repo.necessity)}</p>" if repo.necessity.present? %>
-              <p><%= user_resume repo.user %></p>
-            </li>
-          <% end %>
-        </ul>
-        </ul>
+
+        <% @repos.each do |repo| %>
+          <%= render "repos/content_list", repo: repo %>
+        <% end %>
+
       </div>
     </div>
   </div>
