@@ -1,0 +1,25 @@
+<h1>Needs some help?</h1>
+<div class="row">
+  <div class="col-sm-6">
+    <h3><%= current_user.nickname %> repos</h3>
+    <ul>
+      <% @user_repos.each do |repo| %>
+        <li><a href="<%= new_repo_path repo.id %>"><%= repo.full_name %></a></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-sm-6">
+    <% @orgs.each do |org| %>
+    <h3><%= org.login %> repos</h3>
+    <ul>
+      <%
+      org_repos = Octokit.organization_repositories(org.login)
+      org_repos.each do |repo|
+      %>
+        <li><a href="<%= new_repo_path repo.id %>"><%= repo.full_name %></a></li>
+      <% end %>
+    </ul>
+    <% end %>
+  </div>
+</div>

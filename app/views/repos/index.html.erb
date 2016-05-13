@@ -1,57 +1,34 @@
 <div class="row">
-  <div class="col-sm-8">
-    <h2 class="">Projects that need your help</h2>
-
-    <div class="row">
-      <div class="col-sm-4 filters">
-        <h3>Filters</h3>
-
-        <ul>
-          <li>
-            <label>Programming Language: </label><%= select_tag(:programming_language,
-              options_for_select(@programming_languages, params["programming_language"]),
-              include_blank: "Any",
-              class: "filter-repos form-control") %>
-          </li>
-          <li>
-            <label>Language: </label><%= select_tag(:language,
-              options_for_select(@languages.collect{ |b| [b.upcase, b] }, params["language"]),
-              include_blank: "Any",
-              class: "filter-repos form-control") %>
-          </li>
-        </ul>
-      </div>
-      <div class="col-sm-8">
-        <h3>Projects</h3>
-
-        <% @repos.each do |repo| %>
-          <%= render "repos/content_list", repo: repo %>
-        <% end %>
-
-      </div>
-    </div>
+  <div class="col-sm-2 filters">
+    <h3>Filters</h3>
+    <ul>
+      <li>
+        <label>Programming Language: </label><%= select_tag(:programming_language,
+          options_for_select(@programming_languages, params["programming_language"]),
+          include_blank: "Any",
+          class: "filter-repos form-control") %>
+      </li>
+      <li>
+        <label>Language: </label><%= select_tag(:language,
+          options_for_select(@languages.collect{ |b| [b.upcase, b] }, params["language"]),
+          include_blank: "Any",
+          class: "filter-repos form-control") %>
+      </li>
+    </ul>
   </div>
 
-  <div class="col-sm-4">
-    <h2>Needs some help?</h2>
-    <h3><%= current_user.nickname %> repos</h3>
+  <div class="col-sm-10">
+    <h3>Projects that need your help</h3>
 
-    <ul>
-      <% @user_repos.each do |repo| %>
-        <li><a href="<%= new_repo_path repo.id %>"><%= repo.full_name %></a></li>
-      <% end %>
-    </ul>
-
-    <% @orgs.each do |org| %>
-    <h3><%= org.login %> repos</h3>
-    <ul>
-      <%
-      org_repos = Octokit.organization_repositories(org.login)
-      org_repos.each do |repo|
-      %>
-        <li><a href="<%= new_repo_path repo.id %>"><%= repo.full_name %></a></li>
-      <% end %>
-    </ul>
+    <% @repos.each_slice(2) do |slice| %>
+      <div class="row">
+        <% slice.each do |repo| %>
+          <div class="col-sm-6">
+            <%= render "repos/content_list", repo: repo %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
+
   </div>
 </div>

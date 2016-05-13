@@ -14,6 +14,11 @@ class ReposController < ApplicationController
 
   end
 
+  def github_repos
+    @user_repos = Octokit.repositories current_user.nickname
+    @orgs = Octokit.orgs current_user.nickname
+  end
+
   # GET /repos/1
   # GET /repos/1.json
   def show
