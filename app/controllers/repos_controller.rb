@@ -17,6 +17,7 @@ class ReposController < ApplicationController
   def github_repos
     @user_repos = Octokit.repositories current_user.nickname
     @orgs = Octokit.orgs current_user.nickname
+    @registered_repos = current_user.repos.pluck(:github_id)
   end
 
   # GET /repos/1

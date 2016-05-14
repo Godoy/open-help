@@ -3,9 +3,9 @@
 
 @import url(https://fonts.googleapis.com/css?family=Exo:400,700,200);
 
-@import "base/scaffolds";
+@import "base/general", "base/scaffolds";
 
-@import "modules/filters", "modules/navbar", "modules/repo";
+@import "modules/filters", "modules/navbar", "modules/repo", "modules/github_repos";
 
 $title-font: "Exo";
 
