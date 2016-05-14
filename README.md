@@ -5,8 +5,7 @@
 
 :octocat: Find small open-source projects that needs your help or find developers to help you!
 
-https://openhelp.herokuapp.com/
-
+http://www.openhelp.info
 
 Open Help was created to facilitate the integration of small projects developers on Github. There are two main objectives:
 
