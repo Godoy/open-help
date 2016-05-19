@@ -1,5 +1,5 @@
 class ReposController < ApplicationController
-  before_action :set_repo, only: [:show, :edit, :update, :destroy]
+  before_action :set_repo, only: [:show, :update, :destroy]
   before_action :authenticate_user!
 
   # GET /repos
@@ -28,16 +28,21 @@ class ReposController < ApplicationController
   # GET /repos/new
   def new
     @github_repo = Octokit.repository(params[:github_id].to_i)
-    @programming_languages = Octokit.languages(params[:github_id].to_i)
 
     # logger.debug @github_repo.to_yaml
     @repo = Repo.new(github_id: params[:github_id])
 
+    @programming_languages = Octokit.languages(params[:github_id].to_i)
     @common_languages = LanguageList::COMMON_LANGUAGES
   end
 
   # GET /repos/1/edit
   def edit
+    @github_repo = Octokit.repository(params[:id].to_i)
+    @repo = Repo.find_by_github_id(params[:id])
+
+    @programming_languages = Octokit.languages(params[:id].to_i)
+    @common_languages = LanguageList::COMMON_LANGUAGES
   end
 
   # POST /repos
