@@ -13,30 +13,37 @@
     </div>
   <% end %>
 
-  <h3><%= @github_repo.name %> (<%= @github_repo.full_name %>)</h3>
-  <p><%= @github_repo.homepage if @github_repo.homepage.present? %></p>
-  <p><%= @github_repo.ssh_url if @github_repo.ssh_url.present? %></p>
+  <a href="<%= @github_repo.html_url %>" target="_blank">
+    <h3><%= @github_repo.name %> (<%= @github_repo.full_name %>)</h3>
+  </a>
 
-  <p><%= @github_repo.html_url if @github_repo.html_url.present? %></p>
 
   <p><%= raw emojify(@github_repo.description) if @github_repo.description.present? %></p>
 
-  <p>Main programming language:
+  <div class="form-group">
+    <%= f.label :github_programming_language, "Programming language:" %>
     <%= f.select(:github_programming_language,
         options_for_select(@programming_languages.collect{ |b| [b[0], b[0]] }),
-         class: "form-control") %>
-  </p>
+        {},
+        { class: "form-control" }) %>
+  </div>
 
-  <p>Main language (issues, commits):
+  <div class="form-group">
+    <%= f.label :language, "Language that you need help:" %>
+    <a href="javascript:void(0);" data-toggle="tooltip"
+      data-placement="right" title="Used in the issues and commits or that you need translation.">
+        <span class="glyphicon glyphicon-question-sign"></span>
+    </a>
     <%= f.select(:language,
         options_for_select(@common_languages.collect{ |b| [b.name, b.iso_639_1] }),
-        include_blank: "Any Language",
-        class: "form-control") %>
-  </p>
+        { include_blank: "Any Language" },
+        { class: "form-control" }) %>
+  </div>
 
-  <p>What do yout need?
-    <%= f.text_area(:necessity) %>
-  </p>
+  <div class="form-group">
+    <%= f.label :necessity, "What do yout need?" %>
+    <%= f.text_area(:necessity, class: "form-control") %>
+  </div>
 
   <div class="actions">
     <%= f.submit "Ask for help", class: "btn btn-primary" %>

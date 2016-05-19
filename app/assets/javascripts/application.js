@@ -23,4 +23,6 @@ $(function() {
 
     window.location.href = "/repos?language="+language+"&programming_language="+escape(programming_language);
   });
+
+  $('[data-toggle="tooltip"]').tooltip();
 });

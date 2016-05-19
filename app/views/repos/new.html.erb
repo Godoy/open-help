@@ -1,5 +1,18 @@
-<h1>New Repo</h1>
+<h1>Register Repo</h1>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="col-sm-4">
 
-<%= link_to 'Back', repos_path %>
+    <p><%= link_to 'Cancel', github_repos_path, class: "btn btn-danger" %></p>
+    <br>
+    <div class="alert alert-warning" role="alert">
+      At any time you can remove this repo from the Open Help list.
+    </div>
+    <div class="alert alert-info" role="alert">
+      Remove this repository when the necessary help is found.
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <%= render 'form' %>
+  </div>
+</div>
