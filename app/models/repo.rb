@@ -9,4 +9,9 @@ class Repo < ActiveRecord::Base
 
   scope :by_language, -> language { where(language: [language, nil, '']) if language.present? }
 
+  rails_admin do
+    list do
+      scopes [nil, :unscoped]
+    end
+  end
 end
