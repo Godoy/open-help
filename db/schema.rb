@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511003049) do
+ActiveRecord::Schema.define(version: 20160526002942) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -45,9 +45,10 @@ ActiveRecord::Schema.define(version: 20160511003049) do
     t.string   "github_stargazers_count"
     t.integer  "user_id"
     t.string   "language"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.text     "necessity"
+    t.boolean  "active",                      default: true
   end
 
   add_index "repos", ["language"], name: "index_repos_on_language"

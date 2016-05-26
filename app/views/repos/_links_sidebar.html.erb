@@ -8,6 +8,12 @@
   At any time you can remove this repo from the Open Help list.
 </div>
 
+<% if params[:action] == "edit" %>
+  <p><a href="<%= repo_remove_path @repo %>" class="btn btn-danger">
+    <span class="glyphicon glyphicon-trash"></span> Remove
+  </a></p>
+<% end %>
+
 <div class="alert alert-info" role="alert">
   Remove this repository when the necessary help is found.
 </div>

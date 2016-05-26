@@ -1,6 +1,8 @@
 class Repo < ActiveRecord::Base
   belongs_to :user
 
+  default_scope { where(active: true) }
+
   scope :by_programming_language, -> programming_language {
     where(github_programming_language: programming_language) if programming_language.present?
   }

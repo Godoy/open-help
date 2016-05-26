@@ -1,5 +1,5 @@
 class ReposController < ApplicationController
-  before_action :set_repo, only: [:show, :update, :destroy]
+  before_action :set_repo, only: [:show, :update, :remove]
   before_action :authenticate_user!
 
   # GET /repos
@@ -90,14 +90,19 @@ class ReposController < ApplicationController
     end
   end
 
-  # DELETE /repos/1
-  # DELETE /repos/1.json
-  def destroy
-    @repo.destroy
+  def remove
+    @repo.active = false
+
     respond_to do |format|
-      format.html { redirect_to repos_url, notice: 'Repo was successfully destroyed.' }
-      format.json { head :no_content }
+      if @repo.save
+        format.html { redirect_to github_repos_path, notice: 'Repo was successfully removed.' }
+        format.json { render :show, status: :created, location: @repo }
+      else
+        format.html { render :edit }
+        format.json { render json: @repo.errors, status: :unprocessable_entity }
+      end
     end
+
   end
 
   private
