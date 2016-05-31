@@ -5,7 +5,9 @@ class ReposController < ApplicationController
   # GET /repos
   # GET /repos.json
   def index
-    @repos = Repo.by_programming_language(params["programming_language"]).by_language(params["language"])
+    @repos = Repo.by_programming_language(params["programming_language"])
+            .by_language(params["language"])
+            .paginate(:page => params[:page], :per_page => 20)
 
     @programming_languages = Repo.uniq.pluck(:github_programming_language)
     @languages = Repo.where.not(language: [nil, '']).uniq.pluck(:language)
