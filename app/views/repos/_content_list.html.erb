@@ -3,14 +3,17 @@
     <a href="<%= repo.github_html_url %>" target="_blank">
       <h3 class="panel-title">
         <%= repo.name %> (<%= repo.full_name %>)
+
+        <%= raw "<span class='pull-right label label-primary'>#{repo.github_programming_language}</span>" if repo.github_programming_language.present? %>
+
       </h3>
     </a>
   </div>
   <div class="panel-body">
     <%= raw "<p>#{emojify(repo.github_description)}</p>" if repo.github_description.present? %>
     <p>
-      <%= raw "<span class='label label-primary'>#{repo.github_programming_language}</span>" if repo.github_programming_language.present? %>
-      <%= repo_counters repo %>
+
+      <%= render "repos/counters", repo: repo %>
     </p>
     <%= raw "<p>#{emojify(repo.necessity)}</p>" if repo.necessity.present? %>
     <p class="pull-right"><%= user_resume repo.user %></p>
