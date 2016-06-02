@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h3><%= @repo.name %> (<%= @repo.full_name %>)</h3>
-<%= repo_counters @repo %>
+<%= render "repos/counters", repo: @repo %>
 
 <p><%= @repo.github_homepage if @repo.github_homepage.present? %></p>
 <p><%= @repo.github_ssh_url if @repo.github_ssh_url.present? %></p>
