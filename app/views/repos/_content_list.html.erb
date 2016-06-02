@@ -16,6 +16,6 @@
       <%= render "repos/counters", repo: repo %>
     </p>
     <%= raw "<p>#{emojify(repo.necessity)}</p>" if repo.necessity.present? %>
-    <p class="pull-right"><%= user_resume repo.user %></p>
+    <p class="pull-right"><%= render "users/resume", user: repo.user %></p>
   </div>
 </div>
