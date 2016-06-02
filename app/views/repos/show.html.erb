@@ -17,5 +17,5 @@
 
 <p><%= user_resume @repo.user %></p>
 
-<%= link_to 'Edit', edit_repo_path(@repo) %> |
-<%= link_to 'Back', repos_path %>
+<%= link_to 'Edit', edit_repo_path(@repo.github_id), class: "btn btn-warning" %> 
+<%= link_to 'Go to home', repos_path, class: "btn btn-info" %>
